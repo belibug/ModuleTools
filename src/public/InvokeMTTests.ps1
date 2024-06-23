@@ -1,3 +1,17 @@
+<#
+.SYNOPSIS
+Runs Pester tests for using settings from project.json
+
+.DESCRIPTION
+This function runs Pester tests using the specified configuration and settings in project.json. Place all your tests in "tests" folder
+
+.PARAMETER None
+This function does not have any parameters.
+
+.EXAMPLE
+Invoke-MTTest
+Runs the Pester tests for the project.
+#>
 function Invoke-MTTest {
     [CmdletBinding()]
     param ()
