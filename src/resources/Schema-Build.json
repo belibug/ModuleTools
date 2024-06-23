@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "description": "Project Schema for Build only",
+    "properties": {
+        "ProjectName": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "Manifest": {
+            "type": "object",
+            "properties": {
+                "Author": {
+                    "type": "string"
+                },
+                "PowerShellHostVersion": {
+                    "type": "string"
+                },
+                "GUID": {
+                    "type": "string"
+                },
+                "Tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ProjecUri": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Author",
+                "PowerShellHostVersion",
+                "GUID"
+            ]
+        }
+    },
+    "required": [
+        "ProjectName",
+        "Description",
+        "Version",
+        "Manifest"
+    ]
+}
