@@ -9,9 +9,12 @@
         "Tags": [
             "Module",
             "Builder",
-            "CICD"
+            "CICD",
+            "Build",
+            "Manifest",
+            "Automation"
         ],
-        "ProjecUri": ""
+        "ProjecUri": "https://github.com/belibug/ModuleTools"
     },
     "Pester": {
         "TestResult": {
