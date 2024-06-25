@@ -15,7 +15,7 @@ Runs the Pester tests for the project.
 function Invoke-MTTest {
     [CmdletBinding()]
     param ()
-    Test-ProjectSchema Pester
+    Test-ProjectSchema Pester | Out-Null
     $Script:data = Get-MTProjectInfo 
     $pesterConfig = New-PesterConfiguration -Hashtable $data.Pester
 

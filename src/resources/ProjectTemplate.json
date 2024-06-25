@@ -1,0 +1,21 @@
+{
+    "ProjectName": "",
+    "Description": "",
+    "Version": "",
+    "Manifest": {
+        "Author": "",
+        "PowerShellHostVersion": "",
+        "GUID": "",
+        "Tags": [],
+        "ProjecUri": ""
+    },
+    "Pester": {
+        "TestResult": {
+            "Enabled": true,
+            "OutputFormat": "NUnitXml"
+        },
+        "Output": {
+            "Verbosity": "Detailed"
+        }
+    }
+}
