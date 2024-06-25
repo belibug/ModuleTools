@@ -2,7 +2,6 @@ BeforeDiscovery {
     $files = Get-ChildItem -Path .\src -Filter '*.ps1' -Recurse
 }
 BeforeAll {
-    $data = Get-MTProjectInfo
     $ScriptAnalyzerSettings = @{
         IncludeDefaultRules = $true
         Severity            = @('Warning', 'Error')
