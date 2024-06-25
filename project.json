@@ -1,28 +1,28 @@
 {
-    "ProjectName": "ModuleTools",
-    "Description": "ModuleTools is a versatile, standalone PowerShell module builder. Create anything from simple to robust modules with ease. Built for CICD and Automation.",
-    "Version": "0.0.2",
-    "Manifest": {
-        "Author": "Manjunath Beli",
-        "PowerShellHostVersion": "7.4",
-        "GUID": "d1595b4a-a79f-4440-94f0-3196f4d29c41",
-        "Tags": [
-            "Module",
-            "Builder",
-            "CICD",
-            "Build",
-            "Manifest",
-            "Automation"
-        ],
-        "ProjecUri": "https://github.com/belibug/ModuleTools"
+  "ProjectName": "ModuleTools",
+  "Description": "ModuleTools is a versatile, standalone PowerShell module builder. Create anything from simple to robust modules with ease. Built for CICD and Automation.",
+  "Version": "0.0.3",
+  "Manifest": {
+    "Author": "Manjunath Beli",
+    "PowerShellHostVersion": "7.4",
+    "GUID": "d1595b4a-a79f-4440-94f0-3196f4d29c41",
+    "Tags": [
+      "Module",
+      "Builder",
+      "CICD",
+      "Build",
+      "Manifest",
+      "Automation"
+    ],
+    "ProjecUri": "https://github.com/belibug/ModuleTools"
+  },
+  "Pester": {
+    "TestResult": {
+      "Enabled": true,
+      "OutputFormat": "NUnitXml"
     },
-    "Pester": {
-        "TestResult": {
-            "Enabled": true,
-            "OutputFormat": "NUnitXml"
-        },
-        "Output": {
-            "Verbosity": "Detailed"
-        }
+    "Output": {
+      "Verbosity": "Detailed"
     }
+  }
 }
