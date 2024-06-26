@@ -1,0 +1,21 @@
+{
+  "ProjectName": "ModuleName",
+  "Description": "Description of Module",
+  "Version": "0.0.1", 
+  "Manifest": {
+    "Author": "Manjunath Beli",
+    "PowerShellHostVersion": "7.4",
+    "GUID": "Use New-Guid to generate guid",
+    "Tags": [],
+    "ProjecUri": ""
+  },
+  "Pester": {
+    "TestResult": {
+      "Enabled": true,
+      "OutputFormat": "NUnitXml"
+    },
+    "Output": {
+      "Verbosity": "Detailed"
+    }
+  }
+}
