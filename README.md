@@ -7,6 +7,12 @@ ModuleTools is a versatile, standalone PowerShell module builder. Create anythin
 
 The structure of the ModuleTools module is meticulously designed according to PowerShell best practices for module development. While some design decisions may seem unconventional, they are made to ensure that ModuleTools and the process of building modules remain straightforward and easy to manage.
 
+## Install
+
+```PowerShell
+Install-Module -Name ModuleTools
+```
+
 ## Design
 
 To ensure this module works correctly, you need to maintain the folder structure and the `project.json` file path. The best way to get started is by running the `New-MTModule` command, which guides you through a series of questions and creates the necessary scaffolding.
