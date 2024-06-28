@@ -19,8 +19,8 @@ function Build-Manifest {
         ModuleVersion         = $data.Version
         PowerShellHostVersion = $data.Manifest.PowerShellHostVersion
         Guid                  = $data.Manifest.GUID
-        Tags                  = $data.Manifest.Tags
     }
+    if ($data.Manifest.Tags) { $ParmsManifest.add('Tags', $data.Manifest.Tags ) }
     if ($data.Manifest.ProjecUri) { $ParmsManifest.add('ProjectUri', $data.Manifest.ProjecUri) }
     if ($data.Manifest.LicenseUri) { $ParmsManifest.add('LicenseUri', $data.Manifest.LicenseUri) }
     if ($data.Manifest.IconUri) { $ParmsManifest.add('IconUri', $data.Manifest.IconUri) }
@@ -28,6 +28,6 @@ function Build-Manifest {
     try {
         New-ModuleManifest @ParmsManifest -ErrorAction Stop
     } catch {
-        Write-Error -Message 'Failed to create Manifest' -ErrorAction Stop
+        'Failed to create Manifest: {0}' -f $_.Exception.Message | Write-Error -ErrorAction Stop
     }
 }

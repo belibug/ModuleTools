@@ -10,6 +10,12 @@ The structure of the ModuleTools module is meticulously designed according to Po
 > [!IMPORTANT]
 > Checkout this [Blog article](https://blog.belibug.com/post/ps-modulebuild) explaining core concepts of ModuleTools.
 
+## Install
+
+```PowerShell
+Install-Module -Name ModuleTools
+```
+
 ## Design
 
 To ensure this module works correctly, you need to maintain the folder structure and the `project.json` file path. The best way to get started is by running the `New-MTModule` command, which guides you through a series of questions and creates the necessary scaffolding.

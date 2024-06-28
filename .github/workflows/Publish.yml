@@ -35,7 +35,6 @@ jobs:
 
       - name: Publish Package to Github
         run: |
-          Register-PSResourceRepository -Name GH -Uri "https://nuget.pkg.github.com/belibug/index.json" -Trusted
           Publish-PSResource -Path ./dist/ModuleTools -Repository PSGallery -ApiKey $Env:ApiKey
         env:
           ApiKey: ${{ secrets.PSGALLERY_API }}
