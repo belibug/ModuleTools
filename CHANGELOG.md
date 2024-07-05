@@ -7,10 +7,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - More verbose info during MTModule creation
-- Issue #2 : Git initialization implemented
 
 ### Fixed
 
+- Issue #2 : Git initialization implemented
 - Issue #1 : Doesn't create empty `tests` folder when user chooses `no` to tests
 
 ## [0.0.4] - 2024-06-25
