@@ -96,9 +96,12 @@ function New-MTModule {
         Write-Error 'Project already exists, aborting' | Out-Null
     }
     # Setup Module
-    ($DirProject, $DirSrc, $DirPrivate, $DirPublic, $DirResources, $DirTests) | ForEach-Object {
+    ($DirProject, $DirSrc, $DirPrivate, $DirPublic, $DirResources) | ForEach-Object {
         'Creating Directory: {0}' -f $_ | Write-Verbose
         New-Item -ItemType Directory -Path $_ | Out-Null
+    }
+    if ( $Answer.EnablePester -eq 'Yes') {
+        New-Item -ItemType Directory -Path $DirTests | Out-Null
     }
 
     ## Create ProjectJSON
