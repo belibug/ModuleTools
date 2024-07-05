@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Current] - 2024-07-05
+## [0.0.5] - 2024-07-05
+
+### Added
+
+- More verbose info during MTModule creation
+- Issue #2 : Git initialization implemented
 
 ### Fixed
 

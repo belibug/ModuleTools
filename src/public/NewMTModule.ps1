@@ -21,6 +21,7 @@ function New-MTModule {
         [string]$Path = (Get-Location).Path
     )
     $ErrorActionPreference = 'Stop'
+    Push-Location
     if (-not(Test-Path $Path)) { Write-Error 'Not a valid path' }
     $Questions = [ordered]@{
         ProjectName           = @{
@@ -96,12 +97,20 @@ function New-MTModule {
         Write-Error 'Project already exists, aborting' | Out-Null
     }
     # Setup Module
+
+    Write-Message "`nStarted Module Scaffolding" -color Green
+    Write-Message 'Setting up Directories'
     ($DirProject, $DirSrc, $DirPrivate, $DirPublic, $DirResources) | ForEach-Object {
         'Creating Directory: {0}' -f $_ | Write-Verbose
         New-Item -ItemType Directory -Path $_ | Out-Null
     }
     if ( $Answer.EnablePester -eq 'Yes') {
+        Write-Message 'Include Pester Configs'
         New-Item -ItemType Directory -Path $DirTests | Out-Null
+    }
+    if ( $Answer.EnableGit -eq 'Yes') {
+        Write-Message 'Initialize Git Repo'
+        New-InitiateGitRepo -DirectoryPath $DirProject
     }
 
     ## Create ProjectJSON
@@ -118,5 +127,5 @@ function New-MTModule {
     Write-Verbose $JsonData
     $JsonData | ConvertTo-Json | Out-File $ProjectJSONFile
 
-    'Module {0} scaffolding complete' -f $Answer.ProjectName | Write-Host -ForegroundColor Green
+    'Module {0} scaffolding complete' -f $Answer.ProjectName | Write-Message -color Green
 }
