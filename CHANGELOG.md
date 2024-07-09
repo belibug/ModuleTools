@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.6] - 2024-07-08
+
+### Added
+
+- `Invoke-MTTest` now supports including and excluding tags
+
+### Fixed
+
+- Code cleanup
+
 ## [0.0.5] - 2024-07-05
 
 ### Added
