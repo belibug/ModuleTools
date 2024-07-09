@@ -1,6 +1,6 @@
 <div align="center" width="100%">
     <h1>ModuleTools</h1>
-    <p>ModuleTools is a versatile, standalone PowerShell module builder. Built for CICD and Automation.</p><p>
+    <p>Fast, Versatile, standalone PowerShell module builder. Built for CICD and Automation.</p><p>
     <a target="_blank" href="https://github.com/belibug"><img src="https://img.shields.io/badge/maintainer-BELI-orange" /></a>
     <a target="_blank" href="https://GitHub.com/belibug/ModuleTools/graphs/contributors/"><img src="https://img.shields.io/github/contributors/belibug/ModuleTools.svg" /></a><br>
     <a target="_blank" href="https://GitHub.com/belibug/ModuleTools/commits/"><img src="https://img.shields.io/github/last-commit/belibug/ModuleTools.svg" /></a>
@@ -10,7 +10,7 @@
 
 ## 💬 Description
 
-ModuleTools is a versatile, standalone PowerShell module builder. Create anything from simple to robust modules with ease. Built for CICD and Automation.
+Whether you're creating simple or robust modules, ModuleTools streamlines the process, making it perfect for CI/CD and automation environments. With comprehensive features included, you can start building PowerShell modules in less than 30 seconds. Let ModuleTools handle the build logic, so you can focus on developing the core functionality of your module.
 
 [![ModuleTools@PowerShell Gallery][BadgeIOCount]][PSGalleryLink]
 ![WorkFlow Status][WorkFlowStatus]
