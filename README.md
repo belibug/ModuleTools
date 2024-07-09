@@ -1,26 +1,38 @@
-# ModuleTools
+<div align="center" width="100%">
+    <h1>ModuleTools</h1>
+    <p>ModuleTools is a versatile, standalone PowerShell module builder. Built for CICD and Automation.</p><p>
+    <a target="_blank" href="https://github.com/belibug"><img src="https://img.shields.io/badge/maintainer-BELI-orange" /></a>
+    <a target="_blank" href="https://GitHub.com/belibug/ModuleTools/graphs/contributors/"><img src="https://img.shields.io/github/contributors/belibug/ModuleTools.svg" /></a><br>
+    <a target="_blank" href="https://GitHub.com/belibug/ModuleTools/commits/"><img src="https://img.shields.io/github/last-commit/belibug/ModuleTools.svg" /></a>
+    <a target="_blank" href="https://GitHub.com/belibug/ModuleTools/issues/"><img src="https://img.shields.io/github/issues/belibug/ModuleTools.svg" /></a>
+    <a target="_blank" href="https://github.com/belibug/ModuleTools/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/belibug/ModuleTools.svg" /></a><br>
+</div>
+
+## 💬 Description
 
 ModuleTools is a versatile, standalone PowerShell module builder. Create anything from simple to robust modules with ease. Built for CICD and Automation.
 
 [![ModuleTools@PowerShell Gallery][BadgeIOCount]][PSGalleryLink]
 ![WorkFlow Status][WorkFlowStatus]
 
+
+
 The structure of the ModuleTools module is meticulously designed according to PowerShell best practices for module development. While some design decisions may seem unconventional, they are made to ensure that ModuleTools and the process of building modules remain straightforward and easy to manage.
 
 > [!IMPORTANT]
 > Checkout this [Blog article](https://blog.belibug.com/post/ps-modulebuild) explaining core concepts of ModuleTools.
 
-## Install
+## ⚙️ Install
 
 ```PowerShell
 Install-Module -Name ModuleTools
 ```
 
-## Design
+## 🧵 Design
 
 To ensure this module works correctly, you need to maintain the folder structure and the `project.json` file path. The best way to get started is by running the `New-MTModule` command, which guides you through a series of questions and creates the necessary scaffolding.
 
-## Folder Structure
+## 📂 Folder Structure
 
 All the Module files should be in inside `src` folder
 
@@ -66,7 +78,7 @@ Run `New-MTModule` to generate the scaffolding; this will also create the `proje
 
 If you want to run `pester` tests keep them in `tests` folder, if not you can ignore this function.
 
-## Commands
+## 💻 Commands
 
 ### New-MTModule
 
@@ -148,20 +160,20 @@ jobs:
         shell: pwsh
 ```
 
-## Requirement
+## 📝 Requirement
 
 - Only tested on PowerShell 7.4, most likely wont work on 5.1
 - No depenedencies. This module doesn’t depend on any other module.
 
-## ToDo
+## ✅ ToDo
 
 - [ ] Support Classes and Enums in modules
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes. Ensure that your code adheres to the existing style and includes appropriate tests.
 
-## License
+## 📃 License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
