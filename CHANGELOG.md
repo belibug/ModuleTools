@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.7] - 2024-07-17
+
+### Added
+
+- Now "Manifest" section of project JSON supports all Manifest parameters, use exact name of parameter (from New-ModuleManifest) as key in JSON
+
+## Fixed
+
+- Corrected typo in ProjectUri from `ProjecUri` to correct spelling.
+
 ## [0.0.6] - 2024-07-08
 
 ### Added

@@ -14,7 +14,7 @@
       "Manifest",
       "Automation"
     ],
-    "ProjecUri": "https://github.com/belibug/ModuleTools"
+    "ProjectUri": "https://github.com/belibug/ModuleTools"
   },
   "Pester": {
     "TestResult": {

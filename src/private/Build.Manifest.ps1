@@ -10,20 +10,24 @@ function Build-Manifest {
         $functionToExport += Get-FunctionNameFromFile -filePath $_.FullName
     }
 
+    $ManfiestAllowedParams = (Get-Command New-ModuleManifest).Parameters.Keys
+
     $ParmsManifest = @{
-        Path                  = $data.ManifestFilePSD1
-        Author                = $data.Manifest.Author
-        Description           = $data.Description
-        FunctionsToExport     = $functionToExport
-        RootModule            = "$($data.ProjectName).psm1"
-        ModuleVersion         = $data.Version
-        PowerShellHostVersion = $data.Manifest.PowerShellHostVersion
-        Guid                  = $data.Manifest.GUID
+        Path              = $data.ManifestFilePSD1
+        Description       = $data.Description
+        FunctionsToExport = $functionToExport
+        RootModule        = "$($data.ProjectName).psm1"
+        ModuleVersion     = $data.Version
     }
-    if ($data.Manifest.Tags) { $ParmsManifest.add('Tags', $data.Manifest.Tags ) }
-    if ($data.Manifest.ProjecUri) { $ParmsManifest.add('ProjectUri', $data.Manifest.ProjecUri) }
-    if ($data.Manifest.LicenseUri) { $ParmsManifest.add('LicenseUri', $data.Manifest.LicenseUri) }
-    if ($data.Manifest.IconUri) { $ParmsManifest.add('IconUri', $data.Manifest.IconUri) }
+
+    # Accept only valid Manifest Parameters
+    $data.Manifest.Keys | ForEach-Object {
+        if ( $ManfiestAllowedParams -contains $_) {
+            $ParmsManifest.add($_, $data.Manifest.$_ )
+        } else {
+            Write-Warning "Unknown parameter $_ in Manifest"
+        }
+    }
 
     try {
         New-ModuleManifest @ParmsManifest -ErrorAction Stop
