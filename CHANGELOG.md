@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.9] - 2024-07-17
+
+## Fixed
+
+- Fixed #7, Invoke build should not through for empty tags
+
 ## [0.0.7] - 2024-07-17
 
 ### Added

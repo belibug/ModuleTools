@@ -23,7 +23,9 @@ function Build-Manifest {
     # Accept only valid Manifest Parameters
     $data.Manifest.Keys | ForEach-Object {
         if ( $ManfiestAllowedParams -contains $_) {
-            $ParmsManifest.add($_, $data.Manifest.$_ )
+            if ($data.Manifest.$_) {
+                $ParmsManifest.add($_, $data.Manifest.$_ )
+            }
         } else {
             Write-Warning "Unknown parameter $_ in Manifest"
         }
