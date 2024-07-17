@@ -10,6 +10,10 @@ on:
 
   workflow_dispatch:
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,23 +23,18 @@ jobs:
       - name: Install ModuleTools module form PSGallery
         run: |
           Install-PSResource -Repository PSGallery -Name ModuleTools -TrustRepository
-        shell: pwsh
 
       - name: Build Module
         run: Invoke-MTBuild -Verbose
-        shell: pwsh
 
       - name: Run Pester Tests
         run: Invoke-MTTest
-        shell: pwsh
 
       - name: List files
         run: Get-ChildItem ./dist -Recurse
-        shell: pwsh
 
       - name: Publish Package to Github
         run: |
           Publish-PSResource -Path ./dist/ModuleTools -Repository PSGallery -ApiKey $Env:ApiKey
         env:
           ApiKey: ${{ secrets.PSGALLERY_API }}
-        shell: pwsh
