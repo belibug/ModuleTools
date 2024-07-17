@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Inprogress
+
+- Updated `ProjecUri` typo to `ProjectUri` in all places. This should work properly for all new module invokes.
+
 ## [0.0.9] - 2024-07-17
 
-## Fixed
+### Fixed
 
 - Fixed #7, Invoke build should not through for empty tags
 

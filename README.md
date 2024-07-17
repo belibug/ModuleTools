@@ -28,6 +28,8 @@ The structure of the ModuleTools module is meticulously designed according to Po
 Install-Module -Name ModuleTools
 ```
 
+> Note: ModuleTolls is still in early devleopment phase and lot of changes are expected. Please read through [ChangeLog](/CHANGELOG.md) for all updates.
+
 ## 🧵 Design
 
 To ensure this module works correctly, you need to maintain the folder structure and the `project.json` file path. The best way to get started is by running the `New-MTModule` command, which guides you through a series of questions and creates the necessary scaffolding.
