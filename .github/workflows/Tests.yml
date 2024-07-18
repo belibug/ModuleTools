@@ -1,6 +1,5 @@
 name: Pester Tests
 
-# Controls when the workflow will run
 on:
   push:
     branches:
@@ -31,6 +30,7 @@ jobs:
         run: Invoke-MTTest
 
       - name: 📝 Generate Report
+        continue-on-error: true
         run: |
           # Get list of files in the dist directory directory
           $Report = New-MDHeader -Text "Output Files 📁" -Level 2
