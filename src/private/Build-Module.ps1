@@ -6,7 +6,7 @@ function Build-Module {
     $sb = [System.Text.StringBuilder]::new()
 
     # Public Folder
-    $files = Get-ChildItem -Path $data.PublicDir -Filter *.ps1
+    $files = Get-ChildItem -Recurse -Path $data.PublicDir -Filter *.ps1
     $files | ForEach-Object {
         $sb.AppendLine([IO.File]::ReadAllText($_.FullName)) | Out-Null
     }
