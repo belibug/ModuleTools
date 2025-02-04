@@ -62,8 +62,6 @@ Generated module is stored in dist folder, you can easily import it or publish i
    └──  TestModule.psm1
 ```
 
-
-
 ### Project JSON File
 
 The `project.json` file contains all the important details about your module and is used during the module build. It should comply with a specific schema. You can refer to the sample `project-sample.json` file in the `example` directory for guidance.
@@ -75,6 +73,38 @@ Run `New-MTModule` to generate the scaffolding; this will also create the `proje
   - Place all your functions in the `private` and `public` folders within the `src` directory.
   - All functions in the `public` folder are exported during the module build.
   - All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
+  - Contents of the `src/resources` folder, including any subfolder, will included in the `dist` folder during the module build.
+
+#### resources Folder
+
+The `resources` folder within the `src` directory is intended for including any additional resources required by your module. This can include files such as:
+
+- **Configuration files**: Store any JSON, XML, or other configuration files needed by your module.
+- **Script files**: Place any scripts that are used by your functions or modules, but are not directly part of the public or private functions.
+- **Documentation files**: Include any supplementary documentation that supports the usage or development of the module.
+- **Data files**: Store any data files that are used by your module, such as CSV or JSON files.
+- **Subfolder**: Include any additional folders and their content to be included with the module, such as dependant Modules, APIs, DLLs, etc... organized by a subfolder.
+
+When the module is built, the contents of the `src/resources` folder will be copied directly to the `dist` folder. If the `src/resources` folder contains any subfolders, those subfolders and their contents will also be included in the `dist` folder, ensuring that all necessary files are available for the module to function correctly.
+
+Leave `src\resources` empty if there is no need to include any additional content in the `dist` folder.
+
+An example of the module build where resources were included:
+
+```
+dist
+└── TestModule
+        ├── TestModule.psd1
+        ├── TestModule.psm1
+        ├── config.json
+        ├── additionalScript.ps1
+        ├── helpDocumentation.md
+        ├── sampleData.csv
+        └── subfolder
+            ├── subConfig.json
+            ├── subScript.ps1
+            └── subData.csv
+```
 
 ### Tests Folder
 
@@ -126,7 +156,15 @@ A simple command to update the module version by modifying the values in `projec
 
 ## Advanced - Use it in Github Actions
 
-This is not required for local module builds, if you are running github actions, use below template to test, build and publish module with ease.
+This is not required for local module builds, if you are running github actions, use the following yaml workflow template to test, build and publish module which helps to automate the process of:
+
+1. Checking out the repository code.
+1. Installing the `ModuleTools` module from the PowerShell Gallery.
+1. Building the module.
+1. Running Pester tests.
+1. Publishing the module to a specified repository.
+
+This allows for seamless and automated management of your PowerShell module, ensuring consistency and reliability in your build, test, and release processes.
 
 ```yaml
 name: Build, Test and Publish
@@ -154,6 +192,7 @@ jobs:
       - name: Run Pester Tests
         run: Invoke-MTTest
         shell: pwsh
+
       - name: Publish Package to Github
         run: |
           Publish-PSResource -Path ./dist/YourModule -Repository SomeRepository -ApiKey $Env:ApiKey
