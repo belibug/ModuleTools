@@ -15,8 +15,6 @@ Whether you're creating simple or robust modules, ModuleTools streamlines the pr
 [![ModuleTools@PowerShell Gallery][BadgeIOCount]][PSGalleryLink]
 ![WorkFlow Status][WorkFlowStatus]
 
-
-
 The structure of the ModuleTools module is meticulously designed according to PowerShell best practices for module development. While some design decisions may seem unconventional, they are made to ensure that ModuleTools and the process of building modules remain straightforward and easy to manage.
 
 > [!IMPORTANT]
@@ -28,7 +26,7 @@ The structure of the ModuleTools module is meticulously designed according to Po
 Install-Module -Name ModuleTools
 ```
 
-> Note: ModuleTolls is still in early devleopment phase and lot of changes are expected. Please read through [ChangeLog](/CHANGELOG.md) for all updates.
+> Note: ModuleTolls is still in early development phase and lot of changes are expected. Please read through [ChangeLog](/CHANGELOG.md) for all updates.
 
 ## 🧵 Design
 
@@ -70,10 +68,10 @@ Run `New-MTModule` to generate the scaffolding; this will also create the `proje
 
 ### Src Folder
 
-  - Place all your functions in the `private` and `public` folders within the `src` directory.
-  - All functions in the `public` folder are exported during the module build.
-  - All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
-  - Contents of the `src/resources` folder, including any subfolder, will included in the `dist` folder during the module build.
+- Place all your functions in the `private` and `public` folders within the `src` directory.
+- All functions in the `public` folder are exported during the module build.
+- All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
+- Contents of the `src/resources` folder, including any subfolder, will included in the `dist` folder during the module build.
 
 #### resources Folder
 
@@ -87,11 +85,13 @@ The `resources` folder within the `src` directory is intended for including any 
 
 When the module is built, the contents of the `src/resources` folder will be copied directly to the `dist` folder. If the `src/resources` folder contains any subfolders, those subfolders and their contents will also be included in the `dist` folder, ensuring that all necessary files are available for the module to function correctly.
 
+How the resources folder gets copied to the "OutputModuleDir" folder will depends on the "CopyMode" project setting. When missing or set to "Folder", the resources folder will be copied. When "CopyMode" is set to "Content", then only the content of the resources folder will be copied.
+
 Leave `src\resources` empty if there is no need to include any additional content in the `dist` folder.
 
 An example of the module build where resources were included:
 
-```
+```powershell
 dist
 └── TestModule
         ├── TestModule.psd1
@@ -126,6 +126,11 @@ New-MTModule ~/Work
 ### Invoke-MTBuild
 
 `ModuleTools` is designed so that you don't need any additional tools like `make` or `psake` to run the build commands. There's no need to maintain complex `build.ps1` files or sample `.psd1` files. Simply follow the structure outlined above, and you can run `Invoke-MTBuild` to build the module. The output will be saved in the `dist` folder, ready for distribution.
+
+The Invoke-MTBuild CmdLet includes a step where the resources folder and/or it's contents are copied to the "OutputModuleDir" folder. This is controlled by the optional "CopyMode" project setting.
+
+If "CopyMode" = 'Folder or if it's missing, the entire resources folder gets copied to the "OutputModuleDir" folder.
+If "CopyMode" = 'Content', only the content of the resources folder gets copied to the "OutputModuleDir" folder.
 
 ```powershell
 # From the Module root 
