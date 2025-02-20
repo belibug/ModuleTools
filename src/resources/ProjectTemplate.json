@@ -2,6 +2,7 @@
     "ProjectName": "",
     "Description": "",
     "Version": "",
+    "CopyMode": "",
     "Manifest": {
         "Author": "",
         "PowerShellHostVersion": "",
