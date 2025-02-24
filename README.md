@@ -85,7 +85,7 @@ The `resources` folder within the `src` directory is intended for including any 
 
 When the module is built, the contents of the `src/resources` folder will be copied directly to the `dist` folder. If the `src/resources` folder contains any subfolders, those subfolders and their contents will also be included in the `dist` folder, ensuring that all necessary files are available for the module to function correctly.
 
-How the resources folder gets copied to the "OutputModuleDir" folder will depends on the "CopyMode" project setting. When missing or set to "Folder", the resources folder will be copied. When "CopyMode" is set to "Content", then only the content of the resources folder will be copied.
+How the resources folder gets copied to the "OutputModuleDir" folder will depends on the "ResourceCopyMode" project setting. When missing or set to "Folder", the resources folder will be copied. When "ResourceCopyMode" is set to "Content", then only the content of the resources folder will be copied.
 
 Leave `src\resources` empty if there is no need to include any additional content in the `dist` folder.
 
@@ -127,10 +127,10 @@ New-MTModule ~/Work
 
 `ModuleTools` is designed so that you don't need any additional tools like `make` or `psake` to run the build commands. There's no need to maintain complex `build.ps1` files or sample `.psd1` files. Simply follow the structure outlined above, and you can run `Invoke-MTBuild` to build the module. The output will be saved in the `dist` folder, ready for distribution.
 
-The Invoke-MTBuild CmdLet includes a step where the resources folder and/or it's contents are copied to the "OutputModuleDir" folder. This is controlled by the optional "CopyMode" project setting.
+The Invoke-MTBuild CmdLet includes a step where the resources folder and/or it's contents are copied to the "OutputModuleDir" folder. This is controlled by the optional "ResourceCopyMode" project setting.
 
-If "CopyMode" = 'Folder or if it's missing, the entire resources folder gets copied to the "OutputModuleDir" folder.
-If "CopyMode" = 'Content', only the content of the resources folder gets copied to the "OutputModuleDir" folder.
+If "ResourceCopyMode" = 'Folder or if it's missing, the entire resources folder gets copied to the "OutputModuleDir" folder.
+If "ResourceCopyMode" = 'Content', only the content of the resources folder gets copied to the "OutputModuleDir" folder.
 
 ```powershell
 # From the Module root 

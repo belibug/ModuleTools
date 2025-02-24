@@ -12,7 +12,7 @@
         "Version": {
             "type": "string"
         },
-        "CopyMode": {
+        "ResourceCopyMode": {
             "type": "string"
         },        
         "Manifest": {

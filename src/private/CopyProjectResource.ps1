@@ -2,7 +2,7 @@ function Copy-ProjectResource {
     $data = Get-MTProjectInfo
     $resFolder = [System.IO.Path]::Join($data.ProjectRoot, 'src', 'resources')
     if (Test-Path $resFolder) {
-        if ($data.CopyMode -eq 'Content') {
+        if ($data.ResourceCopyMode -eq 'Content') {
             # Copy the resources folder content to the OutputModuleDir
             $items = Get-ChildItem -Path $resFolder -ErrorAction SilentlyContinue
             if ($items) {
