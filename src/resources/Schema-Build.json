@@ -12,9 +12,6 @@
         "Version": {
             "type": "string"
         },
-        "ResourceCopyMode": {
-            "type": "string"
-        },        
         "Manifest": {
             "type": "object",
             "properties": {
