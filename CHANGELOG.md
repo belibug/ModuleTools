@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0]
+## [1.0.0] - 2025-03-11
 
 ### Added
 
-- New optional project setting `copyResourcesToModuleRoot`. Setting to true places resource files in the root directory of module. Default is `false` to provide backward compatibility. Thanks to @BrooksV
+- New optional project setting `copyResourcesToModuleRoot`. Setting to true places resource files in the root directory of module. Default is `false` to provide backward compatibility. Thanks to @[BrooksV](https://github.com/BrooksV)
 
 ### Fixed
 
