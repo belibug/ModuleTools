@@ -71,9 +71,9 @@ Run `New-MTModule` to generate the scaffolding; this will also create the `proje
 - Place all your functions in the `private` and `public` folders within the `src` directory.
 - All functions in the `public` folder are exported during the module build.
 - All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
-- Contents of the `src/resources` folder, including any subfolder, will included in the `dist` folder during the module build.
+- Contents of the `src/resources` folder will be handled based on setting `copyResourcesToModuleRoot`
 
-#### resources Folder
+#### Resources Folder
 
 The `resources` folder within the `src` directory is intended for including any additional resources required by your module. This can include files such as:
 
@@ -83,13 +83,12 @@ The `resources` folder within the `src` directory is intended for including any 
 - **Data files**: Store any data files that are used by your module, such as CSV or JSON files.
 - **Subfolder**: Include any additional folders and their content to be included with the module, such as dependant Modules, APIs, DLLs, etc... organized by a subfolder.
 
-When the module is built, the contents of the `src/resources` folder will be copied directly to the `dist` folder. If the `src/resources` folder contains any subfolders, those subfolders and their contents will also be included in the `dist` folder, ensuring that all necessary files are available for the module to function correctly.
 
-How the resources folder gets copied to the "OutputModuleDir" folder will depends on the "ResourceCopyMode" project setting. When missing or set to "Folder", the resources folder will be copied. When "ResourceCopyMode" is set to "Content", then only the content of the resources folder will be copied.
+By default, resource files from `src/resources` go into `dist/resources`. To place them directly in dist (avoiding the resources subfolder), set `copyResourcesToModuleRoot` to `true`. This provides greater control in certain deployment scenarios where resources files are preferred in module root directory.
 
 Leave `src\resources` empty if there is no need to include any additional content in the `dist` folder.
 
-An example of the module build where resources were included:
+An example of the module build where resources were included and `copyResourcesToModuleRoot` is set to true.
 
 ```powershell
 dist
@@ -126,11 +125,6 @@ New-MTModule ~/Work
 ### Invoke-MTBuild
 
 `ModuleTools` is designed so that you don't need any additional tools like `make` or `psake` to run the build commands. There's no need to maintain complex `build.ps1` files or sample `.psd1` files. Simply follow the structure outlined above, and you can run `Invoke-MTBuild` to build the module. The output will be saved in the `dist` folder, ready for distribution.
-
-The Invoke-MTBuild CmdLet includes a step where the resources folder and/or it's contents are copied to the "OutputModuleDir" folder. This is controlled by the optional "ResourceCopyMode" project setting.
-
-If "ResourceCopyMode" = 'Folder or if it's missing, the entire resources folder gets copied to the "OutputModuleDir" folder.
-If "ResourceCopyMode" = 'Content', only the content of the resources folder gets copied to the "OutputModuleDir" folder.
 
 ```powershell
 # From the Module root 
