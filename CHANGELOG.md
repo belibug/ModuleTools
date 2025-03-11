@@ -2,9 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## Inprogress
+## [1.0.0] - 2025-03-11
 
-- Updated `ProjecUri` typo to `ProjectUri` in all places. This should work properly for all new module invokes.
+### Added
+
+- New optional project setting `copyResourcesToModuleRoot`. Setting to true places resource files in the root directory of module. Default is `false` to provide backward compatibility. Thanks to @[BrooksV](https://github.com/BrooksV)
+
+### Fixed
+
+- **BREAKING CHANGE**: Typo corrected: ProjecUri to ProjectUri. Existing projects require manual update.
 
 ## [0.0.9] - 2024-07-17
 

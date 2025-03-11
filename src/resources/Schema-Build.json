@@ -12,6 +12,9 @@
         "Version": {
             "type": "string"
         },
+        "copyResourcesToModuleRoot": {
+            "type": "boolean"
+        },
         "Manifest": {
             "type": "object",
             "properties": {

@@ -2,6 +2,7 @@
     "ProjectName": "",
     "Description": "",
     "Version": "",
+    "copyResourcesToModuleRoot": false,
     "Manifest": {
         "Author": "",
         "PowerShellHostVersion": "",
