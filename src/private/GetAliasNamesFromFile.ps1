@@ -2,53 +2,59 @@
 function Get-AliasNamesFromFile {
     param($filePath)
 
-    $aliasToExport = @()
+    $aliasesToExport = @()
 
     try {
         $moduleContent = Get-Content -Path $filePath -Raw
         $ast = [System.Management.Automation.Language.Parser]::ParseInput($moduleContent, [ref]$null, [ref]$null)
 
         # Find and add aliases defined by Set-Alias
-        $ast.EndBlock.Statements
-        | Where-Object { $_ -match "^\s*Set-Alias .+" }
-        | ForEach-Object { $_.Extent.text }
-        | ForEach-Object {
-            $params = $_ -split '\s+'
-            # $content += "`n$_"
+        $outsideFunctionAliasName = (
+            $ast.EndBlock.Statements
+            | Where-Object { $_ -match "^\s*Set-Alias .+" }
+            | ForEach-Object { $_.Extent.text }
+        )
 
-            if ($_ -imatch "-na") {
-                # alias is defined using -Name parameter to Set-Alias
-                # so get the alias name from the next parameter
+        # Parse Set-Alias statements to extract the alias name
+        ForEach ($saEntry in $outsideFunctionAliasName) {
+            $saParams = $saEntry -split '\s+'
+
+            # Check if alias is defined using -Name parameter to Set-Alias
+            # and if so get the alias name from the next parameter after -Name
+            if ($saEntry -imatch "-na") {
                 $i = 0
                 $parNameLoc = 0
-                ForEach ($par in $params) {
+                # Loop through all parameters for this Set-Alias command
+                ForEach ($par in $saParams) {
                     if ($par -imatch "-na") {
                         $parNameLoc = $i
                     }
                     ++$i
                 }
-                $aliasToExport += $params[$parNameLoc + 1]
+                $aliasesToExport += $saParams[$parNameLoc + 1]
             }
+            # If -Name parameter is not used then assume the alias name is the
+            #   first parameter to Set-Alias
             else {
-                $aliasToExport += $params[1]
+                $aliasesToExport += $saParams[1]
             }
-            # Write-Verbose "Content: $_"
         }
 
         # Find and add aliases defined by [Alias("Some-Alias")] attribute
+        #  of functions
         $insideFunctionAliasName = $ast.FindAll({
-            $args[0] -is [System.Management.Automation.Language.AttributeAst]
-        }, $true)
-        | Where-Object { $_.Parent.Extent.text -match '^param' }
-        | Select-Object -ExpandProperty PositionalArguments
-        | Select-Object -ExpandProperty Value -ErrorAction SilentlyContinue
+            $args[0] -is [System.Management.Automation.Language.AttributeAst]}, $true)
+                | Where-Object { $_.Parent.Extent.text -match '^param' }
+                | Select-Object -ExpandProperty PositionalArguments
+                | Select-Object -ExpandProperty Value -ErrorAction SilentlyContinue
 
         if ($insideFunctionAliasName) {
             $insideFunctionAliasName | ForEach-Object {
-                $aliasToExport += $_
+                $aliasesToExport += $_
             }
         }
-        return $aliasToExport
+
+        return $aliasesToExport
     }
     catch { return '' }
 }
