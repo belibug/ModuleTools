@@ -6,8 +6,10 @@ function Build-Manifest {
 
     $PubFunctionFiles = Get-ChildItem -Path $data.PublicDir -Filter *.ps1
     $functionToExport = @()
-    $PubFunctionFiles | ForEach-Object {
-        $functionToExport += Get-FunctionNameFromFile -filePath $_.FullName
+    $aliasToExport = @()
+    $PubFunctionFiles.FullName | ForEach-Object {
+        $functionToExport += Get-FunctionNameFromFile -filePath $_
+        $aliasToExport += Get-AliasInFunctionFromFile -filePath $_
     }
 
     $ManfiestAllowedParams = (Get-Command New-ModuleManifest).Parameters.Keys
@@ -16,6 +18,7 @@ function Build-Manifest {
         Path              = $data.ManifestFilePSD1
         Description       = $data.Description
         FunctionsToExport = $functionToExport
+        AliasesToExport   = $aliasToExport
         RootModule        = "$($data.ProjectName).psm1"
         ModuleVersion     = $data.Version
     }

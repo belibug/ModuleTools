@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-08-28
+
+## Added
+
+- Now Module manifest includes `AliasesToExport`. This helps loading aliases without explicitly importing modules to session. 
+- thanks to @djs-zmtc for suggesting the feature
+
 ## [1.0.0] - 2025-03-11
 
 ### Added

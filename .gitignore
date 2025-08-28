@@ -1,3 +1,4 @@
 temp/
 run.ps1
 dist/
+justfile
