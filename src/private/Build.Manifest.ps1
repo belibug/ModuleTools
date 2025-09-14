@@ -13,15 +13,19 @@ function Build-Manifest {
     }
 
     $ManfiestAllowedParams = (Get-Command New-ModuleManifest).Parameters.Keys
-
+    $sv = [semver]$data.Version
     $ParmsManifest = @{
         Path              = $data.ManifestFilePSD1
         Description       = $data.Description
         FunctionsToExport = $functionToExport
         AliasesToExport   = $aliasToExport
         RootModule        = "$($data.ProjectName).psm1"
-        ModuleVersion     = $data.Version
+        ModuleVersion     = [version]$sv
     }
+        
+    if ($sv.PreReleaseLabel) {
+        $ParmsManifest['Prerelease'] = $sv.PreReleaseLabel 
+    } 
 
     # Accept only valid Manifest Parameters
     $data.Manifest.Keys | ForEach-Object {
