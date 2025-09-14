@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2025-09-14
+
+### Added
+- Now supports preview tag in Update-MTModuleVersion
+- Now supports semver naming in both project.json and modulemanifest
+- Module build supports `preview` or `prerelease` tag
+- Preview version looks like `1.2.3-preview` 
+
 ## [1.1.0] - 2025-08-28
 
 ## Added
