@@ -37,11 +37,18 @@ function Update-MTModuleVersion {
     $jsonContent = Get-Content -Path $data.ProjecJSON | ConvertFrom-Json
 
     [semver]$CurrentVersion = $jsonContent.Version
-
-    $Major = ($Label -eq 'Major') ? ($CurrentVersion.Major + 1) : $CurrentVersion.Major
-    $Minor = ($Label -eq 'Minor') ? ($CurrentVersion.Minor + 1) : $CurrentVersion.Minor
-    $Patch = ($Label -eq 'Patch') ? ($CurrentVersion.Patch + 1) : $CurrentVersion.Patch
     
+    if ($Label -eq 'Major') {
+        $Major = $CurrentVersion.Major + 1
+        $Minor = 0
+        $Patch = 0
+    } elseif ($Label -eq 'Minor') {
+        $Minor = $CurrentVersion.Minor + 1
+        $Patch = 0
+    } elseif ($Label -eq 'Patch') {
+        $Patch = $CurrentVersion.Patch + 1
+    }
+
     if ($PreviewRelease) {
         $ReleaseType = 'preview' 
     } elseif ($StableRelease) { 

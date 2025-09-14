@@ -5,6 +5,12 @@ function Build-Module {
 
     $sb = [System.Text.StringBuilder]::new()
 
+    # Classes Folder
+    $files = Get-ChildItem -Path $data.ClassesDir -Filter *.ps1 -ErrorAction SilentlyContinue
+    $files | ForEach-Object {
+        $sb.AppendLine([IO.File]::ReadAllText($_.FullName)) | Out-Null
+    }
+
     # Public Folder
     $files = Get-ChildItem -Path $data.PublicDir -Filter *.ps1
     $files | ForEach-Object {

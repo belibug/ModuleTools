@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.4-preview] - 2025-09-14
+- Added support for classes directory inside src
+- New-MTModule generates classes directory during fresh project
+- `classes` directory should include `.ps1` files which contain enums and classes
+
 ## [1.1.3] - 2025-09-14
 
 ### Added
