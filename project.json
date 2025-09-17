@@ -1,7 +1,7 @@
 {
   "ProjectName": "ModuleTools",
   "Description": "ModuleTools is a versatile, standalone PowerShell module builder. Create anything from simple to robust modules with ease. Built for CICD and Automation.",
-  "Version": "1.2.1",
+  "Version": "1.2.4-preview",
   "copyResourcesToModuleRoot": false,
   "Manifest": {
     "Author": "Manjunath Beli",
