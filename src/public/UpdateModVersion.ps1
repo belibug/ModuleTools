@@ -43,9 +43,12 @@ function Update-MTModuleVersion {
         $Minor = 0
         $Patch = 0
     } elseif ($Label -eq 'Minor') {
+        $Major = $CurrentVersion.Major
         $Minor = $CurrentVersion.Minor + 1
         $Patch = 0
     } elseif ($Label -eq 'Patch') {
+        $Major = $CurrentVersion.Major
+        $Minor = $CurrentVersion.Minor
         $Patch = $CurrentVersion.Patch + 1
     }
 
