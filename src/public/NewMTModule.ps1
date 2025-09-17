@@ -90,6 +90,7 @@ function New-MTModule {
     $DirPrivate = Join-Path -Path $DirSrc -ChildPath 'private'
     $DirPublic = Join-Path -Path $DirSrc -ChildPath 'public'
     $DirResources = Join-Path -Path $DirSrc -ChildPath 'resources'
+    $DirClasses = Join-Path -Path $DirSrc -ChildPath 'classes'
     $DirTests = Join-Path -Path $DirProject -ChildPath 'tests'
     $ProjectJSONFile = Join-Path $DirProject -ChildPath 'project.json'
 
@@ -100,7 +101,7 @@ function New-MTModule {
 
     Write-Message "`nStarted Module Scaffolding" -color Green
     Write-Message 'Setting up Directories'
-    ($DirProject, $DirSrc, $DirPrivate, $DirPublic, $DirResources) | ForEach-Object {
+    ($DirProject, $DirSrc, $DirPrivate, $DirPublic, $DirResources, $DirClasses) | ForEach-Object {
         'Creating Directory: {0}' -f $_ | Write-Verbose
         New-Item -ItemType Directory -Path $_ | Out-Null
     }

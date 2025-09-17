@@ -45,8 +45,9 @@ All the Module files should be in inside `src` folder
 │  └──  New-PublicFunction.ps1
 ├──  resources
 │  └──  some-config.json
-└──  tests
-   └──  Pester.Some.Tests.ps1
+└──  classes
+   └──  Person.classes.ps1
+   └──  Person.enums.ps1
 ```
 
 ### Dist Folder
@@ -71,6 +72,7 @@ Run `New-MTModule` to generate the scaffolding; this will also create the `proje
 - Place all your functions in the `private` and `public` folders within the `src` directory.
 - All functions in the `public` folder are exported during the module build.
 - All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
+- All `ps1` files in `classes` folder contains classes and enums, that are processed and placed in topmost of generated `psm1` files
 - Contents of the `src/resources` folder will be handled based on setting `copyResourcesToModuleRoot`
 
 #### Resources Folder
@@ -149,11 +151,14 @@ All the pester configurations are stored in `project.json`, simply run `Invoke-M
 
 A simple command to update the module version by modifying the values in `project.json`. You can also manually edit the file in your favorite editor. This command makes it easy to update the semantic version.
 
-- Running `Update-MTModuleVersion` without any parameters will update the patch version (e.g., 1.0.1 -> 1.0.2).
-- Running `Update-MTModuleVersion -Label Major` updates the major version (e.g., 1.0.1 -> 2.0.1).
-- Running `Update-MTModuleVersion -Label Minor` updates the minor version (e.g., 1.0.1 -> 1.1.1).
+- Running `Update-MTModuleVersion` without any parameters will update the patch version (e.g., 1.2.3 -> 1.2.4)
+- Running `Update-MTModuleVersion -Label Major` updates the major version and resets Minor, Patch to 0 (e.g., 1.2.1 -> 2.0.0)
+- Running `Update-MTModuleVersion -Label Minor` updates the minor version and resets Patch to 0 (e.g., 1.2.3 -> 1.3.0)
 
 ## Advanced - Use it in Github Actions
+
+> [!TIP]
+> This repository uses Github actions to run tests and publish to PowerShell Gallery, use it as reference.
 
 This is not required for local module builds, if you are running github actions, use the following yaml workflow template to test, build and publish module which helps to automate the process of:
 
@@ -202,12 +207,12 @@ jobs:
 
 ## 📝 Requirement
 
-- Only tested on PowerShell 7.4, most likely wont work on 5.1
-- No depenedencies. This module doesn’t depend on any other module.
+- Only tested on PowerShell 7.4, ~most likely~ will not work on 5.1. Underlying module can still support older version, only the ModuleTools builder wont work on older version.
+- No depenedencies. This module doesn’t depend on any other module. Completely self contained
 
 ## ✅ ToDo
 
-- [ ] Support Classes and Enums in modules
+- [ ] Add more tests
 
 ## 🤝 Contributing
 
