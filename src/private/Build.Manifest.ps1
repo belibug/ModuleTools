@@ -15,7 +15,11 @@ function Build-Manifest {
     ## Import Formatting (if any)
     $FormatsToProcess = @()
     Get-ChildItem -Path $data.ResourcesDir -File -Filter '*.ps1xml' -ErrorAction SilentlyContinue | ForEach-Object {
-        $FormatsToProcess += $_.Name
+        if ($data.copyResourcesToModuleRoot) { 
+            $FormatsToProcess += $_.Name
+        } else {
+            $FormatsToProcess += Join-Path -Path 'resources' -ChildPath $_.Name
+        }
     }
 
     $ManfiestAllowedParams = (Get-Command New-ModuleManifest).Parameters.Keys
