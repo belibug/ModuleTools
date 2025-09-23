@@ -42,5 +42,6 @@ function Get-MTProjectInfo {
     $Out['ModuleFilePSM1'] = [System.IO.Path]::Join($Out.OutputModuleDir, "$ProjectName.psm1")   
     $Out['ManifestFilePSD1'] = [System.IO.Path]::Join($Out.OutputModuleDir, "$ProjectName.psd1")  
 
-    return $Out
+    $Output = [pscustomobject]$Out | Add-Member -TypeName MTProjectInfo -PassThru   
+    return $Output
 }

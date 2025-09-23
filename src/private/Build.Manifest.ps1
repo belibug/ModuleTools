@@ -12,6 +12,16 @@ function Build-Manifest {
         $aliasToExport += Get-AliasInFunctionFromFile -filePath $_
     }
 
+    ## Import Formatting (if any)
+    $FormatsToProcess = @()
+    Get-ChildItem -Path $data.ResourcesDir -File -Filter '*.ps1xml' -ErrorAction SilentlyContinue | ForEach-Object {
+        if ($data.copyResourcesToModuleRoot) { 
+            $FormatsToProcess += $_.Name
+        } else {
+            $FormatsToProcess += Join-Path -Path 'resources' -ChildPath $_.Name
+        }
+    }
+
     $ManfiestAllowedParams = (Get-Command New-ModuleManifest).Parameters.Keys
     $sv = [semver]$data.Version
     $ParmsManifest = @{
@@ -21,8 +31,10 @@ function Build-Manifest {
         AliasesToExport   = $aliasToExport
         RootModule        = "$($data.ProjectName).psm1"
         ModuleVersion     = [version]$sv
+        FormatsToProcess  = $FormatsToProcess
     }
-        
+      
+    ## Release lable
     if ($sv.PreReleaseLabel) {
         $ParmsManifest['Prerelease'] = $sv.PreReleaseLabel 
     } 

@@ -1,6 +1,8 @@
 function Build-Module {
-    Write-Verbose 'Buidling module psm1 file'
     $data = Get-MTProjectInfo
+    $MTBuildVersion = (Get-Command Invoke-MTBuild).Version
+    Write-Verbose "Running ModuleTols Version: $MTBuildVersion"
+    Write-Verbose 'Buidling module psm1 file'
     Test-ProjectSchema -Schema Build | Out-Null
 
     $sb = [System.Text.StringBuilder]::new()
