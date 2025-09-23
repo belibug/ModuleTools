@@ -81,6 +81,7 @@ The `resources` folder within the `src` directory is intended for including any 
 
 - **Configuration files**: Store any JSON, XML, or other configuration files needed by your module.
 - **Script files**: Place any scripts that are used by your functions or modules, but are not directly part of the public or private functions.
+- **formatdata files**: Store `Type.format.ps1xml` file for custom format data types to be imported to manifest
 - **Documentation files**: Include any supplementary documentation that supports the usage or development of the module.
 - **Data files**: Store any data files that are used by your module, such as CSV or JSON files.
 - **Subfolder**: Include any additional folders and their content to be included with the module, such as dependant Modules, APIs, DLLs, etc... organized by a subfolder.
