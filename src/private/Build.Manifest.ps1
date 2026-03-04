@@ -23,7 +23,7 @@ function Build-Manifest {
     }
 
     ## Import Types.ps1xml1 (if any)
-    $FormatsToProcess = @()
+    $TypesToProcess = @()
     Get-ChildItem -Path $data.ResourcesDir -File -Filter '*Types.ps1xml' -ErrorAction SilentlyContinue | ForEach-Object {
         if ($data.copyResourcesToModuleRoot) { 
             $TypesToProcess += $_.Name
@@ -42,6 +42,7 @@ function Build-Manifest {
         RootModule        = "$($data.ProjectName).psm1"
         ModuleVersion     = [version]$sv
         FormatsToProcess  = $FormatsToProcess
+        TypesToProcess    = $TypesToProcess
     }
       
     ## Release lable
