@@ -12,13 +12,23 @@ function Build-Manifest {
         $aliasToExport += Get-AliasInFunctionFromFile -filePath $_
     }
 
-    ## Import Formatting (if any)
+    ## Import Format.ps1xml (if any)
     $FormatsToProcess = @()
-    Get-ChildItem -Path $data.ResourcesDir -File -Filter '*.ps1xml' -ErrorAction SilentlyContinue | ForEach-Object {
+    Get-ChildItem -Path $data.ResourcesDir -File -Filter '*Format.ps1xml' -ErrorAction SilentlyContinue | ForEach-Object {
         if ($data.copyResourcesToModuleRoot) { 
             $FormatsToProcess += $_.Name
         } else {
             $FormatsToProcess += Join-Path -Path 'resources' -ChildPath $_.Name
+        }
+    }
+
+    ## Import Types.ps1xml1 (if any)
+    $FormatsToProcess = @()
+    Get-ChildItem -Path $data.ResourcesDir -File -Filter '*Types.ps1xml' -ErrorAction SilentlyContinue | ForEach-Object {
+        if ($data.copyResourcesToModuleRoot) { 
+            $TypesToProcess += $_.Name
+        } else {
+            $TypesToProcess += Join-Path -Path 'resources' -ChildPath $_.Name
         }
     }
 
