@@ -12,6 +12,8 @@ function Publish-MTLocal {
         $ModuleDirectoryPath = Get-LocalModulePath
     }
 
+    Write-Verbose "Using $ModuleDirectoryPath as path"
+
     $ProjectInfo = Get-MTProjectInfo
 
     # Ensure module is locally built and ready
@@ -22,9 +24,12 @@ function Publish-MTLocal {
     # Cleanup old files
     $OldModule = Join-Path -Path $ModuleDirectoryPath -ChildPath $ProjectInfo.ProjectName
     if (Test-Path -Path $OldModule) {
+        Write-Verbose 'Removing old module files'
         Remove-Item -Recurse $OldModule -Force
     }
 
     # Copy New Files
+    Write-Verbose 'Copying new Files'
     Copy-Item -Path $ProjectInfo.OutputModuleDir -Destination $ModuleDirectoryPath -Recurse -ErrorAction Stop
+    Write-Verbose 'Module copy to local path complete, Refresh session or import module manually'
 }
