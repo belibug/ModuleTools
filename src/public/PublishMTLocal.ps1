@@ -4,8 +4,10 @@ function Publish-MTLocal {
         [string]$ModuleDirectoryPath
     )
 
-    if ($ModuleDirectoryPath -and (-not (Test-Path $ModuleDirectoryPath -PathType Container)) ) {
-        New-Item $ModuleDirectoryPath -ItemType Directory -Force
+    if ($ModuleDirectoryPath) {
+        if (-not (Test-Path $ModuleDirectoryPath -PathType Container)) {
+            New-Item $ModuleDirectoryPath -ItemType Directory -Force | Out-Null
+        }
     } else {
         $ModuleDirectoryPath = Get-LocalModulePath
     }
