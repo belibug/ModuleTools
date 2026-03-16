@@ -18,7 +18,7 @@ function Publish-MTLocal {
 
     # Ensure module is locally built and ready
     if (-not (Test-Path $ProjectInfo.OutputModuleDir)) {
-        trhow 'Dist folder is empty, build the module before running publish command'
+        throw 'Dist folder is empty, build the module before running publish command'
     }
 
     # Cleanup old files
