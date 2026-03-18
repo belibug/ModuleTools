@@ -12,13 +12,9 @@ function Build-Help {
         return
     }
     
-    #region Check PlatyPS version requirement
-    $minVersion = [version]'1.0.1'
-    $module = Get-Module -ListAvailable -Name Microsoft.PowerShell.PlatyPS | Sort-Object Version -Descending | Select-Object -First 1
-    if (-not $module -or $module.Version -lt $minVersion) {
-        throw 'Microsoft.PowerShell.PlatyPS version 1.0.1 or higher is required.'
+    if (-not (Get-Module -Name Microsoft.PowerShell.PlatyPS -ListAvailable)) {
+        throw 'The module Microsoft.PowerShell.PlatyPS must be installed for Markdown documentation to be generated.'
     }
-    #endregion
 
     $AllCommandHelpFiles = $helpMarkdownFiles | Measure-PlatyPSMarkdown | Where-Object FileType -Match CommandHelp
 
