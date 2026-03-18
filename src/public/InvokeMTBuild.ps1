@@ -20,5 +20,6 @@ function Invoke-MTBuild {
     Reset-ProjectDist
     Build-Module
     Build-Manifest
+    Build-Help
     Copy-ProjectResource
 }
