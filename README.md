@@ -61,6 +61,16 @@ Generated module is stored in dist folder, you can easily import it or publish i
    └──  TestModule.psm1
 ```
 
+### Docs Folder
+
+Store `Microsoft.PowerShell.PlatyPs` generated markdown files in `docs` folder. If `docs` folder exists and contain valid markdown files, Build will generate  MAML help file in the built module. 
+
+```
+ docs
+├──  ModuleTools.md
+└──  Invoke-MTBuild.md
+```
+
 ### Project JSON File
 
 The `project.json` file contains all the important details about your module and is used during the module build. It should comply with a specific schema. You can refer to the sample `project-sample.json` file in the `example` directory for guidance.
