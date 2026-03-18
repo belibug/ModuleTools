@@ -37,6 +37,7 @@ function Get-MTProjectInfo {
     $Out['PrivateDir'] = [System.IO.Path]::Join($ProjectRoot, 'src', 'private')
     $Out['ClassesDir'] = [System.IO.Path]::Join($ProjectRoot, 'src', 'classes')
     $Out['ResourcesDir'] = [System.IO.Path]::Join($ProjectRoot, 'src', 'resources')
+    $Out['DocsDir'] = [System.IO.Path]::Join($ProjectRoot, 'docs')
     $Out['OutputDir'] = [System.IO.Path]::Join($ProjectRoot, 'dist')  
     $Out['OutputModuleDir'] = [System.IO.Path]::Join($Out.OutputDir, $ProjectName)  
     $Out['ModuleFilePSM1'] = [System.IO.Path]::Join($Out.OutputModuleDir, "$ProjectName.psm1")   
