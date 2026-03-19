@@ -35,15 +35,13 @@ copies all necessary resource files.
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### EXAMPLE 1: Builds module from the project files.
 
 Invoke-MTBuild
-Builds module from the project files.
 
-### EXAMPLE 2
+### EXAMPLE 2: Builds module and outputs verbose details during entire workflow.
 
 Invoke-MTBuild -Verbose
-Builds module and outputs verbose details during entire workflow.
 
 ## PARAMETERS
 

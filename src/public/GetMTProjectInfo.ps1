@@ -14,13 +14,14 @@ function Get-MTProjectInfo {
     $jsonData = Get-Content -LiteralPath $projectJson -Raw | ConvertFrom-Json -AsHashtable
 
     $Out = @{}
-    $Out['ProjectJSON'] = Join-Path -Path $ProjectRoot -ChildPath 'project.json'
+    $Out['ProjectJSON'] = $ProjectJson
 
     foreach ($key in $jsonData.Keys) {
         $Out[$key] = $jsonData[$key]
     }
     $Out.ProjectJson = $projectJson
     $Out.PSTypeName = 'MTProjectInfo'
+    $ProjectName = $jsonData.ProjectName
 
     ## Folders
     $Out['ProjectRoot'] = $ProjectRoot
