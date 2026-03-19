@@ -1,28 +1,3 @@
-<#
-.SYNOPSIS
-Runs Pester tests for using settings from project.json
-
-.DESCRIPTION
-This function runs Pester tests using the specified configuration and settings in project.json. Place all your tests in "tests" folder
-
-.PARAMETER TagFilter
-Array of tags to run, Provide the tag Pester should run
-
-.PARAMETER ExcludeTagFilter
-Array of tags to exclude, Provide the tag Pester should exclude
-
-.EXAMPLE
-Invoke-MTTest
-Runs the Pester tests for the project.
-
-.EXAMPLE
-Invoke-MTTest -TagFilter "unit","integrate"
-Runs the Pester tests for the project, that has tag unit or integrate
-
-.EXAMPLE
-Invoke-MTTest -ExcludeTagFilter "unit"
-Runs the Pester tests for the project, excludes any test with tag unit
-#>
 function Invoke-MTTest {
     [CmdletBinding()]
     param (

@@ -1,20 +1,3 @@
-<#
-.SYNOPSIS
-Create module scaffolding along with project.json file to easily build and manage modules
-
-.DESCRIPTION
-This command creates folder structure and project.json file easily. Use this to quikcly setup a ModuleTools compatible module. 
-
-.PARAMETER Path
-Path where module will be created. Provide root folder path, module folder will be created as subdirectory. Path should be valid.
-
-.EXAMPLE
-New-MTModule -Path c:\work
-# Creates module inside c:\work folder
-
-.NOTES
-The structure of the ModuleTools module is meticulously designed according to PowerShell best practices for module development. While some design decisions may seem unconventional, they are made to ensure that ModuleTools and the process of building modules remain straightforward and easy to manage.
-#>
 function New-MTModule {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param (
