@@ -20,8 +20,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: 📦 Install ModuleTools module form PSGallery
-        run: Install-PSResource -Repository PSGallery -Name ModuleTools -TrustRepository
+      - name: 📦 Install required modules from PSGallery
+        run: |
+          Install-PSResource -Repository PSGallery -Name ModuleTools -TrustRepository
+          Install-PSResource -Repository PSGallery -Name Microsoft.PowerShell.PlatyPS -TrustRepository
 
       - name: 🏗️ Build Module
         run: Invoke-MTBuild -Verbose
