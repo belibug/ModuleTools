@@ -18,7 +18,7 @@ Whether you're creating simple or robust modules, ModuleTools streamlines the pr
 The structure of the ModuleTools module is meticulously designed according to PowerShell best practices for module development. While some design decisions may seem unconventional, they are made to ensure that ModuleTools and the process of building modules remain straightforward and easy to manage.
 
 > [!IMPORTANT]
-> Checkout this [Blog article](https://blog.belibug.com/post/ps-modulebuild) explaining core concepts of ModuleTools.
+> Check out this [blog article](https://blog.belibug.com/post/ps-modulebuild) explaining the core concepts of ModuleTools.
 
 ## ⚙️ Install
 
@@ -26,7 +26,7 @@ The structure of the ModuleTools module is meticulously designed according to Po
 Install-Module -Name ModuleTools
 ```
 
-> Note: ModuleTolls is still in early development phase and lot of changes are expected. Please read through [ChangeLog](/CHANGELOG.md) for all updates.
+> Note: ModuleTools is still in an early development phase and lots of changes are expected. Please read through the [changelog](/CHANGELOG.md) for all updates.
 
 ## 🧵 Design
 
@@ -34,7 +34,7 @@ To ensure this module works correctly, you need to maintain the folder structure
 
 ## 📂 Folder Structure
 
-All the Module files should be in inside `src` folder
+All module files should be inside the `src` folder.
 
 ```
  .
@@ -52,7 +52,7 @@ All the Module files should be in inside `src` folder
 
 ### Dist Folder
 
-Generated module is stored in dist folder, you can easily import it or publish it to PowerShell repository. 
+The generated module is stored in the `dist` folder. You can easily import it or publish it to a PowerShell repository.
 
 ```
  dist
@@ -63,7 +63,7 @@ Generated module is stored in dist folder, you can easily import it or publish i
 
 ### Docs Folder
 
-Store `Microsoft.PowerShell.PlatyPs` generated markdown files in `docs` folder. If `docs` folder exists and contain valid markdown files, Build will generate  MAML help file in the built module. 
+Store `Microsoft.PowerShell.PlatyPS` generated Markdown files in the `docs` folder. If the `docs` folder exists and contains valid Markdown files, the build will generate a MAML help file in the built module.
 
 ```
  docs
@@ -136,6 +136,7 @@ The `resources` folder within the `src` directory is intended for including any 
 - **Subfolder**: Include any additional folders and their content to be included with the module, such as dependant Modules, APIs, DLLs, etc... organized by a subfolder.
 
 
+
 By default, resource files from `src/resources` go into `dist/resources`. To place them directly in dist (avoiding the resources subfolder), set `copyResourcesToModuleRoot` to `true`. This provides greater control in certain deployment scenarios where resources files are preferred in module root directory.
 
 Leave `src\resources` empty if there is no need to include any additional content in the `dist` folder.
@@ -159,7 +160,7 @@ dist
 
 ### Tests Folder
 
-If you want to run `pester` tests keep them in `tests` folder, if not you can ignore this function.
+If you want to run Pester tests, keep them in the `tests` folder. Otherwise, you can ignore this feature.
 
 ## 💻 Commands
 
@@ -188,13 +189,13 @@ Invoke-MTBuild -Verbose
 
 ### Get-MTProjectInfo
 
-This functions give you complete info about the project which can be used in pester tests or for general troubleshooting.
+This function provides complete info about the project, which can be used in Pester tests or for general troubleshooting.
 
 ### Invoke-MTTest
 
-All the pester configurations are stored in `project.json`, simply run `Invoke-MTTest` command from project root, it will run all the tests inside `tests` folder
+All Pester configuration is stored in `project.json`. Simply run `Invoke-MTTest` from the project root; it will run all tests inside the `tests` folder.
 
-- To skip a test insdie test directory use `-skip` in describe/it/context block within Pester test.
+- To skip a test inside the test directory, use `-skip` in a `Describe`/`It`/`Context` block within the Pester test.
 - Use `Get-MTProjectInfo` command inside pester to get great amount of info about project and files
 
 ### Update-MTModuleVersion
@@ -258,7 +259,8 @@ jobs:
 ## 📝 Requirement
 
 - Only tested on PowerShell 7.4, ~most likely~ will not work on 5.1. Underlying module can still support older version, only the ModuleTools builder wont work on older version.
-- No depenedencies. This module doesn’t depend on any other module. Completely self contained
+- Only tested on PowerShell 7.4, so it most likely will not work on 5.1. The underlying module can still support older versions; only the ModuleTools builder won't work on older versions.
+- No dependencies. This module doesn’t depend on any other module. Completely self-contained.
 
 ## ✅ ToDo
 
