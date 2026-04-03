@@ -3,6 +3,8 @@
     "Description": "",
     "Version": "",
     "copyResourcesToModuleRoot": false,
+    "BuildRecursiveFolders": false,
+    "FailOnDuplicateFunctionNames": false,
     "Manifest": {
         "Author": "",
         "PowerShellHostVersion": "",

@@ -15,6 +15,14 @@
         "copyResourcesToModuleRoot": {
             "type": "boolean"
         },
+        "BuildRecursiveFolders": {
+            "type": "boolean",
+            "description": "Opt-in recursive discovery for src/classes and src/private. src/public stays top-level only."
+        },
+        "FailOnDuplicateFunctionNames": {
+            "type": "boolean",
+            "description": "Opt-in validation: fail build when duplicate top-level function names exist in the generated dist/<Project>/<Project>.psm1."
+        },
         "Manifest": {
             "type": "object",
             "properties": {

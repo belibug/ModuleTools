@@ -77,13 +77,51 @@ The `project.json` file contains all the important details about your module and
 
 Run `New-MTModule` to generate the scaffolding; this will also create the `project.json` file.
 
+#### Build settings (optional)
+
+ModuleTools supports these optional settings at the top level of `project.json`:
+
+- `BuildRecursiveFolders` (default: `false`)
+  - When `true`, ModuleTools will discover `.ps1` files recursively in `src/classes` and `src/private`.
+  - `src/public` is always **top-level only** (never recursive).
+- `FailOnDuplicateFunctionNames` (default: `false`, recommended: `true`)
+  - When `true`, ModuleTools will parse the generated `dist/<Project>/<Project>.psm1` and fail the build if duplicate **top-level** function names exist.
+
+Example:
+
+```json
+{
+  "BuildRecursiveFolders": false,
+  "FailOnDuplicateFunctionNames": true
+}
+```
+
 ### Src Folder
 
 - Place all your functions in the `private` and `public` folders within the `src` directory.
 - All functions in the `public` folder are exported during the module build.
 - All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
-- All `ps1` files in `classes` folder contains classes and enums, that are processed and placed in topmost of generated `psm1` files
-- Contents of the `src/resources` folder will be handled based on setting `copyResourcesToModuleRoot`
+- `src/classes` should contain classes and enums. These files are placed at the top of the generated `psm1`.
+- `src/resources` content is handled based on `copyResourcesToModuleRoot`.
+
+#### Deterministic processing order
+
+To ensure builds are deterministic across platforms, files are processed in this order:
+
+1. `src/classes`
+2. `src/public`
+3. `src/private`
+
+Within each folder group, files are processed in a deterministic order by relative path (case-insensitive).
+
+#### Recursive folder support
+
+By default, ModuleTools loads only top-level `.ps1` files in each folder.
+
+If `BuildRecursiveFolders` is set to `true`:
+
+- `src/classes` and `src/private` are processed recursively.
+- `src/public` remains top-level only.
 
 #### Resources Folder
 

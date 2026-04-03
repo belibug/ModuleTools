@@ -19,6 +19,20 @@ function Get-MTProjectInfo {
     foreach ($key in $jsonData.Keys) {
         $Out[$key] = $jsonData[$key]
     }
+
+    if (-not $Out.ContainsKey('BuildRecursiveFolders')) {
+        $Out['BuildRecursiveFolders'] = $false
+    }
+    else {
+        $Out['BuildRecursiveFolders'] = [bool]$Out['BuildRecursiveFolders']
+    }
+
+    if (-not $Out.ContainsKey('FailOnDuplicateFunctionNames')) {
+        $Out['FailOnDuplicateFunctionNames'] = $false
+    }
+    else {
+        $Out['FailOnDuplicateFunctionNames'] = [bool]$Out['FailOnDuplicateFunctionNames']
+    }
     $Out.ProjectJson = $projectJson
     $Out.PSTypeName = 'MTProjectInfo'
     $ProjectName = $jsonData.ProjectName

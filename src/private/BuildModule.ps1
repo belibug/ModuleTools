@@ -7,24 +7,10 @@ function Build-Module {
 
     $sb = [System.Text.StringBuilder]::new()
 
-    # Classes Folder
-    $files = Get-ChildItem -Path $data.ClassesDir -Filter *.ps1 -ErrorAction SilentlyContinue
-    $files | ForEach-Object {
-        $sb.AppendLine([IO.File]::ReadAllText($_.FullName)) | Out-Null
-    }
-
-    # Public Folder
-    $files = Get-ChildItem -Path $data.PublicDir -Filter *.ps1
-    $files | ForEach-Object {
-        $sb.AppendLine([IO.File]::ReadAllText($_.FullName)) | Out-Null
-    }
-
-    # Private Folder
-    $files = Get-ChildItem -Path $data.PrivateDir -Filter *.ps1 -ErrorAction SilentlyContinue
-    if ($files) {
-        $files | ForEach-Object {
-            $sb.AppendLine([IO.File]::ReadAllText($_.FullName)) | Out-Null
-        }
+    $files = Get-ProjectScriptFile -ProjectInfo $data
+    foreach ($file in $files) {
+        $sb.AppendLine([IO.File]::ReadAllText($file.FullName)) | Out-Null
+        $sb.AppendLine() | Out-Null
     }
     try {
         Set-Content -Path $data.ModuleFilePSM1 -Value $sb.ToString() -Encoding 'UTF8' -ErrorAction Stop # psm1 file
