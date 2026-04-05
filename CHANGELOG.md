@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Opt-in project settings:
-  - `BuildRecursiveFolders` (default `false`): recursive discovery for `src/classes` and `src/private`.
+  - `BuildRecursiveFolders` (default `false`): recursive discovery for `src/classes`, `src/private` and `tests`.
   - `FailOnDuplicateFunctionNames` (default `false`): fail build when duplicate top-level function names exist in generated `dist/<Project>/<Project>.psm1`.
 
 ### Changed

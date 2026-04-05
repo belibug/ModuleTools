@@ -30,7 +30,7 @@ This cmdlet has the following aliases,
 
 ## DESCRIPTION
 
-Run Pester tests using the specified configuration and settings as defined in project.json. Place all your tests in "tests" folder
+Run Pester tests using the specified configuration and settings as defined in project.json. When `BuildRecursiveFolders` is `false`, only top-level `tests/*.Tests.ps1` files are run, following Pester's normal test-file convention. When `BuildRecursiveFolders` is `true`, test files in nested folders under `tests` are also discovered and run.
 
 ## EXAMPLES
 

@@ -84,6 +84,7 @@ ModuleTools supports these optional settings at the top level of `project.json`:
 - `BuildRecursiveFolders` (default: `false`)
   - When `true`, ModuleTools will discover `.ps1` files recursively in `src/classes` and `src/private`.
   - `src/public` is always **top-level only** (never recursive).
+  - For `Invoke-MTTest`, `BuildRecursiveFolders=false` runs only top-level `tests/*.Tests.ps1` files (the usual Pester naming convention), while `BuildRecursiveFolders=true` also includes tests in subfolders.
 - `FailOnDuplicateFunctionNames` (default: `false`, recommended: `true`)
   - When `true`, ModuleTools will parse the generated `dist/<Project>/<Project>.psm1` and fail the build if duplicate **top-level** function names exist.
 
@@ -122,6 +123,7 @@ If `BuildRecursiveFolders` is set to `true`:
 
 - `src/classes` and `src/private` are processed recursively.
 - `src/public` remains top-level only.
+- `Invoke-MTTest` also includes test files in nested folders under `tests`.
 
 #### Resources Folder
 
@@ -193,7 +195,7 @@ This function provides complete info about the project, which can be used in Pes
 
 ### Invoke-MTTest
 
-All Pester configuration is stored in `project.json`. Simply run `Invoke-MTTest` from the project root; it will run all tests inside the `tests` folder.
+All Pester configuration is stored in `project.json`. Run `Invoke-MTTest` from the project root; with `BuildRecursiveFolders=false` it runs only top-level `tests/*.Tests.ps1` files, matching Pester's normal test-file convention, and with `BuildRecursiveFolders=true` it also runs tests in nested folders under `tests`.
 
 - To skip a test inside the test directory, use `-skip` in a `Describe`/`It`/`Context` block within the Pester test.
 - Use `Get-MTProjectInfo` command inside pester to get great amount of info about project and files

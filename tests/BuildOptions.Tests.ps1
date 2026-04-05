@@ -72,6 +72,20 @@ Describe 'Invoke-MTBuild options' {
         $aOffset | Should -BeLessThan $bOffset
     }
 
+    Context 'Invoke-MTTest discovery for BuildRecursiveFolders=<BuildRecursiveFolders>' -ForEach @(
+        @{ Name = 'TestsTopOnly'; BuildRecursiveFolders = $false; ExpectedNestedMarker = $false }
+        @{ Name = 'TestsRecursive'; BuildRecursiveFolders = $true; ExpectedNestedMarker = $true }
+    ) {
+        It 'runs the expected set of top-level and nested tests' {
+            $project = New-TestProjectWithMarkerTests -TestDriveRoot $TestDrive -Name $_.Name -BuildRecursiveFolders $_.BuildRecursiveFolders
+            $result = Invoke-TestProjectTests -ProjectRoot $project.Root -ModulePath $distModuleDir
+
+            $result.ExitCode | Should -Be 0 -Because ($result.Output -join [Environment]::NewLine)
+            (Test-Path -LiteralPath $project.TopMarker) | Should -BeTrue
+            (Test-Path -LiteralPath $project.NestedMarker) | Should -Be $_.ExpectedNestedMarker
+        }
+    }
+
     It 'FailOnDuplicateFunctionNames=true fails when built psm1 contains duplicate top-level function names' {
         $root = New-TestProjectRoot -TestDriveRoot $TestDrive -Name 'DupFail'
         Write-TestProjectJson -ProjectRoot $root -Options @{ ProjectName = 'DupFail'; BuildRecursiveFolders = $false; FailOnDuplicateFunctionNames = $true }
