@@ -45,6 +45,8 @@ All the Module files should be in inside `src` folder
 │  └──  New-PublicFunction.ps1
 ├──  resources
 │  └──  some-config.json
+├──  lib
+│  └── Some-assembly.dll
 └──  classes
    └──  Person.classes.ps1
    └──  Person.enums.ps1
@@ -84,6 +86,10 @@ Run `New-MTModule` to generate the scaffolding; this will also create the `proje
 - All functions in the `private` folder are accessible internally within the module but are not exposed outside the module.
 - All `ps1` files in `classes` folder contains classes and enums, that are processed and placed in topmost of generated `psm1` files
 - Contents of the `src/resources` folder will be handled based on setting `copyResourcesToModuleRoot`
+- 
+#### Lib Folder
+
+The `lib` folder within the `src` directory is intended for libraries and assempblies (dll files). When there is a library folder with dll files, it will be copied to module output dir and all dll are appended in module manifest as Required Assemblies.
 
 #### Resources Folder
 

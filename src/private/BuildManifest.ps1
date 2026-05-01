@@ -32,17 +32,24 @@ function Build-Manifest {
         }
     }
 
+    ## load assemblies from lib (if any)
+    $RequiredAssemblies = @()
+    Get-ChildItem -Path $data.LibDir -File -Filter '*.dll' -ErrorAction SilentlyContinue | ForEach-Object {
+        $RequiredAssemblies += [System.IO.Path]::Join('.', 'lib', $_.Name)
+    }
+
     $ManfiestAllowedParams = (Get-Command New-ModuleManifest).Parameters.Keys
     $sv = [semver]$data.Version
     $ParmsManifest = @{
-        Path              = $data.ManifestFilePSD1
-        Description       = $data.Description
-        FunctionsToExport = $functionToExport
-        AliasesToExport   = $aliasToExport
-        RootModule        = "$($data.ProjectName).psm1"
-        ModuleVersion     = [version]$sv
-        FormatsToProcess  = $FormatsToProcess
-        TypesToProcess    = $TypesToProcess
+        Path               = $data.ManifestFilePSD1
+        Description        = $data.Description
+        FunctionsToExport  = $functionToExport
+        AliasesToExport    = $aliasToExport
+        RootModule         = "$($data.ProjectName).psm1"
+        ModuleVersion      = [version]$sv
+        FormatsToProcess   = $FormatsToProcess
+        TypesToProcess     = $TypesToProcess
+        RequiredAssemblies = $RequiredAssemblies
     }
       
     ## Release lable

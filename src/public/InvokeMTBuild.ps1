@@ -8,4 +8,5 @@ function Invoke-MTBuild {
     Build-Manifest
     Build-Help
     Copy-ProjectResource
+    Copy-LibFolder
 }
